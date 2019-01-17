@@ -43,6 +43,7 @@
                     {{ post.body | truncatewords:40 }}
                   </p>
                   <p class="card-text">
+                    <p><i><b>Tags:</b> {{ post.tags.all|join:", " }} </i></p>
                     <small class="text-muted">Last updated {{ post.updated }}</small>
                   </p>
                   <div class="card-footer text-secondary d-flex justify-content-between">
@@ -83,7 +84,15 @@
         {% endfor %}
       </div>
       <div class="col-lg-3 d-none d-lg-block">
-       Implement the search the filters after adding tag...
+       <div class="container">
+         <h4>Tags :</h4>
+         {% for tag in tags %}
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="{{ tag.name }}">
+            <label class="custom-control-label" for="{{ tag.name }}">{{ tag.name }}</label>
+          </div>
+          {% endfor %}
+       </div>
       </div>
       </div>
     </div>

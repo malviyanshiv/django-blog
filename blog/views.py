@@ -6,6 +6,7 @@ from blog.models import Post, Comment
 from django.shortcuts import get_object_or_404
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from blog.form import CommentForm
+from taggit.models import Tag
 
 # Create your views here.
 
@@ -16,13 +17,14 @@ def blog_home(requests):
     object_list = Post.published.all()
     paginator = Paginator(object_list, 3) # 3 posts in each page
     page = requests.GET.get('page')
+    tags = Tag.objects.all()
     try:
         posts = paginator.page(page)
     except PageNotAnInteger:
         posts = paginator.page(1)
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
-    return render(requests, "blog/index.html", {'posts':posts})
+    return render(requests, "blog/index.html", {'posts':posts, 'tags':tags})
 
 def post_detail(requests, day, month, year, slug):
     post = get_object_or_404(Post, slug=slug, status='published',publish__year=year, publish__month=month, publish__day=day)
