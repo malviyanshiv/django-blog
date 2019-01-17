@@ -66,6 +66,7 @@
                       {{ post.body | truncatewords:40 }}
                     </p>
                     <p class="card-text">
+                      <p><i><b>Tags:</b> {{ post.tags.all|join:", " }} </i></p>
                       <small class="text-muted">Last updated {{ post.updated }}</small>
                     </p>
                     <div class="card-footer text-secondary d-flex justify-content-between">
