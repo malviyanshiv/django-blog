@@ -1,543 +1,184 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="./css/style.css" />
-    <title>Blog</title>
-  </head>
-  <body>
-    <!-- Navigation Area -->
-    <nav
-      class="navbar navbar-expand-sm py-2 navbar-dark bg-dark fixed-top"
-      id="main-nav"
-    >
-      <div class="container">
-        <a href="#" class="navbar-brand"><img src="img/blog_icon1.png" height="50" width="50"> <span class="">log</span></a>
-        <button
-          class="navbar-toggler"
-          data-toggle="collapse"
-          data-target="#navcollapse"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navcollapse">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a href="#main-area" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-              <a href="#explore-area" class="nav-link">Explore</a>
-            </li>
-            <li class="nav-item">
-              <a href="#author-area" class="nav-link">About Author</a>
-            </li>
-            <li class="nav-item">
-              <a href="#contact-area" class="nav-link">Contact Me</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
 
-    <!-- Main Section -->
-    <header class="main-section" id="main-area">
-      <div class="overlay">
-        <div class="container main-content">
-          <div class="row">
-            <div class="col-lg-8 mb-5">
-              <h3 class="display-4">
-                Welcome to the <strong>era</strong> of
-                <strong>blogger :)</strong>
-              </h3>
-              <div class="d-flex">
-                <div class="p-4 align-self-start">
-                  <i class="fas fa-check fa-2x"></i>
-                </div>
-                <div class="p-4 align-self-end">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Recusandae placeat neque voluptate
-                </div>
-              </div>
-              <div class="d-flex">
-                <div class="p-4 align-self-start">
-                  <i class="fas fa-check fa-2x"></i>
-                </div>
-                <div class="p-4 align-self-end">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Recusandae placeat neque voluptate
-                </div>
-              </div>
-              <div class="d-flex">
-                <div class="p-4 align-self-start">
-                  <i class="fas fa-check fa-2x"></i>
-                </div>
-                <div class="p-4 align-self-end">
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Recusandae placeat neque voluptate
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 d-none d-lg-block col-md-7 m-auto">
-              <div class="card card-form">
-                <div class="card-body text-center text-white" id="sub-form">
-                  <h3 class="d-block">Subscribe Now</h3>
-                  <p>keep updated yourself with my new work</p>
-                  <form>
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        name="name"
-                        class="form-control form-control"
-                        placeholder="Name"
-                      />
-                    </div>
-                    <div class="form-group">
-                      <input
-                        type="email"
-                        name="name"
-                        class="form-control form-control"
-                        placeholder="Email"
-                      />
-                    </div>
-                    <input
-                      type="submit"
-                      value="Submit"
-                      class="btn btn-outline-light btn-block"
-                    />
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Modal Form for mdedium screen-->
-          <div class="text-center d-lg-none">
-            <button
-              type="button"
-              class="btn bg-my btn-lg"
-              data-toggle="modal"
-              data-target="#signupmodal"
-            >
-              Subscribe
-            </button>
-            <div
-              class="modal fade"
-              id="signupmodal"
-              tabindex="-1"
-              role="dialog"
-              aria-labelledby="signupmodal"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="card card-form bg-secondary">
-                    <div class="card-body text-center bg-my">
-                      <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                      >
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                      <h3 class="d-block">Subscribe Now</h3>
-                      <p>keep updated yourself with our new work</p>
-                      <form action="">
-                        <div class="form-group">
-                          <input
-                            type="text"
-                            name="name"
-                            class="form-control form-control-lg"
-                            placeholder="Name"
-                          />
-                        </div>
-                        <div class="form-group">
-                          <input
-                            type="email"
-                            name="name"
-                            class="form-control form-control-lg"
-                            placeholder="Email"
-                          />
-                        </div>
-                        <input
-                          type="submit"
-                          value="Submit"
-                          class="btn btn-outline-light btn-block"
-                        />
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="{% static './css/style.css' %}" />
+  <title>Blog</title>
+</head>
 
-    <!-- Explore Section -->
-    <section class="explore-section-header" id="explore-area">
-      <div class="container text-center py-5">
-        <h1 class="display-3">Explore</h1>
-      </div>
-    </section>
-
-    <section class="explore-section text-dark">
-      <div class="container">
-        <div class="card-deck">
-          <div class="card mb-5">
-            <img src="./img/card-top-1.jpg" alt="Card Image" class="card-img-top" />
-            <div class="card-body text-dark">
-              <h5 class="card-title">
-                The situation demands for the perfect !!!
-              </h5>
-              <p class="card-text">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque,
-                sunt veritatis. Omnis reprehenderit odit placeat iusto iste
-                voluptatem quisquam facere explicabo maiores, quidem eius
-                voluptatum!
-              </p>
-              <p class="card-text">
-                <small class="text-muted">Last updated 3 min ago</small>
-              </p>
-              <div class="card-footer text-secondary d-flex justify-content-between">
-                <a><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">12</span></a>
-                <a><i class="fas fa-comments fa-2x"></i><span class="badge">10</span></a>
-                <a href="#" class="btn btn-secondary">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="card mb-5">
-            <img src="./img/card-top-2.jpg" alt="Card Image" class="card-img-top" />
-            <div class="card-body text-dark">
-              <h5 class="card-title">
-                The situation demands for the perfect !!!
-              </h5>
-              <p class="card-text">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque,
-                sunt veritatis. Omnis reprehenderit odit placeat iusto iste
-                voluptatem quisquam facere explicabo maiores, quidem eius
-                voluptatum!
-              </p>
-              <p class="card-text">
-                <small class="text-muted">Last updated 3 min ago</small>
-              </p>
-              <div class="card-footer text-secondary d-flex justify-content-between">
-                <a><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">12</span></a>
-                <a><i class="fas fa-comments fa-2x"></i><span class="badge">10</span></a>
-                <a href="#" class="btn btn-secondary">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="card mb-5">
-            <img src="./img/card-top-3.jpg" alt="Card Image" class="card-img-top" />
-            <div class="card-body text-dark">
-              <h5 class="card-title">
-                The situation demands for the perfect !!!
-              </h5>
-              <p class="card-text">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque,
-                sunt veritatis. Omnis reprehenderit odit placeat iusto iste
-                voluptatem quisquam facere explicabo maiores, quidem eius
-                voluptatum!
-              </p>
-              <p class="card-text">
-                <small class="text-muted">Last updated 3 min ago</small>
-              </p>
-              <div class="card-footer text-secondary d-flex justify-content-between">
-                <a><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">12</span></a>
-                <a><i class="fas fa-comments fa-2x"></i><span class="badge">10</span></a>
-                <a href="#" class="btn btn-secondary">Read More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-deck">
-          <div class="card mb-5">
-            <img src="./img/card-top-1.jpg" alt="Card Image" class="card-img-top" />
-            <div class="card-body text-dark">
-              <h5 class="card-title">
-                The situation demands for the perfect !!!
-              </h5>
-              <p class="card-text">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque,
-                sunt veritatis. Omnis reprehenderit odit placeat iusto iste
-                voluptatem quisquam facere explicabo maiores, quidem eius
-                voluptatum!
-              </p>
-              <p class="card-text">
-                <small class="text-muted">Last updated 3 min ago</small>
-              </p>
-              <div class="card-footer text-secondary d-flex justify-content-between">
-                <a><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">12</span></a>
-                <a><i class="fas fa-comments fa-2x"></i><span class="badge">10</span></a>
-                <a href="#" class="btn btn-secondary">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="card mb-5">
-            <img src="./img/card-top-2.jpg" alt="Card Image" class="card-img-top" />
-            <div class="card-body text-dark">
-              <h5 class="card-title">
-                The situation demands for the perfect !!!
-              </h5>
-              <p class="card-text">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque,
-                sunt veritatis. Omnis reprehenderit odit placeat iusto iste
-                voluptatem quisquam facere explicabo maiores, quidem eius
-                voluptatum!
-              </p>
-              <p class="card-text">
-                <small class="text-muted">Last updated 3 min ago</small>
-              </p>
-              <div class="card-footer text-secondary d-flex justify-content-between">
-                <a><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">12</span></a>
-                <a><i class="fas fa-comments fa-2x"></i><span class="badge">10</span></a>
-                <a href="#" class="btn btn-secondary">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="card mb-5">
-            <img src="./img/card-top-3.jpg" alt="Card Image" class="card-img-top" />
-            <div class="card-body text-dark">
-              <h5 class="card-title">
-                The situation demands for the perfect !!!
-              </h5>
-              <p class="card-text">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque,
-                sunt veritatis. Omnis reprehenderit odit placeat iusto iste
-                voluptatem quisquam facere explicabo maiores, quidem eius
-                voluptatum!
-              </p>
-              <p class="card-text">
-                <small class="text-muted">Last updated 3 min ago</small>
-              </p>
-              <div class="card-footer text-secondary d-flex justify-content-between">
-                <a><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">12</span></a>
-                <a><i class="fas fa-comments fa-2x"></i><span class="badge">10</span></a>
-                <a href="#" class="btn btn-secondary">Read More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- pagination content -->
-    <div class="container d-flex justify-content-center mb-4">
-      <nav>
-        <ul class="pagination">
-          <li class="page-item"><a href="" class="page-link">Previous</a></li>
-          <li class="page-item"><a href="" class="page-link">1</a></li>
-          <li class="page-item"><a href="" class="page-link">Next</a></li>
-        </ul>
-      </nav>
+<body>
+  <div class="jumbotron jumbotron-fluid" id="main-section">
+    <div class="container text-center">
+      <h1 class="display-3">^_^&nbsp;<strong>BLOG</strong>&nbsp;^_^</h1>
+      <p class="lead display-4 d-block my-5">Collection of my writing</p>
     </div>
+  </div>
 
-    <!-- about Section -->
-    <section class="about-section-header" id="author-area">
-      <div class="container text-center p-5">
-        <h2 class="display-3">About Author</h2>
-      </div>
-    </section>
-    <section class="about-section pb-5">
-      <div class="container py-5">
-        <div class="row">
-          <div class="col-lg-6 mb-4">
-            <img src="img/explore-section1.jpg" alt="Explore" class="img-fluid rounded-circle" />
-          </div>
-          <div class="col-lg-6 mb-4">
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
-            <div class="d-flex">
-              <div class="p-4 align-self-start">
-                <i class="fas fa-check fa-2x"></i>
-              </div>
-              <div class="p-4 align-self-end">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-                autem perspiciatis molestias, dolor aperiam beatae?
+  <!-- Different Post Area -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+          {% for post in posts %}
+          <div class="row">
+            {% if forloop.counter|divisibleby:2 %}
+            <div class="col-lg-6">
+              <img src="{% static 'img/card-top-1.jpg' %} " alt="Card Image" class="img-fluid w-100"/>
+            </div>
+            <div class="col-lg-6">
+              <div class="card mb-5">
+                <!-- <img src="{% static 'img/card-top-1.jpg' %} " alt="Card Image" class="card-img-top" /> -->
+                <div class="card-body text-dark">
+                  <h5 class="card-title">
+                    {{ post.title }}
+                  </h5>
+                  <p class="card-text">
+                    {{ post.body | truncatewords:40 }}
+                  </p>
+                  <p class="card-text">
+                    <small class="text-muted">Last updated {{ post.updated }}</small>
+                  </p>
+                  <div class="card-footer text-secondary d-flex justify-content-between">
+                    <a><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">{{ post.like_count }}</span></a>
+                    <a><i class="fas fa-comments fa-2x"></i><span class="badge">{{ post.comment_count }}</span></a>
+                    <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">Read More</a>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="d-flex">
-              <div class="p-4 align-self-start">
-                <i class="fas fa-check fa-2x"></i>
+            {% else %}
+              <div class="col-lg-6 order-1 order-lg-0">
+                <div class="card mb-5">
+                  <!-- <img src="{% static 'img/card-top-1.jpg' %} " alt="Card Image" class="card-img-top" /> -->
+                  <div class="card-body text-dark">
+                    <h5 class="card-title">
+                      {{ post.title }}
+                    </h5>
+                    <p class="card-text">
+                      {{ post.body | truncatewords:40 }}
+                    </p>
+                    <p class="card-text">
+                      <small class="text-muted">Last updated {{ post.updated }}</small>
+                    </p>
+                    <div class="card-footer text-secondary d-flex justify-content-between">
+                      <a><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">{{ post.like_count }}</span></a>
+                      <a><i class="fas fa-comments fa-2x"></i><span class="badge">{{ post.comment_count }}</span></a>
+                      <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">Read More</a>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="p-4 align-self-end">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-                autem perspiciatis molestias, dolor aperiam beatae?
+              <div class="col-lg-6 order-0 order-lg-1">
+                <img src="{% static 'img/card-top-1.jpg' %} " alt="Card Image" class="img-fluid w-100"/>
               </div>
-            </div>
-            <div class="d-flex">
-              <div class="p-4 align-self-start">
-                <i class="fas fa-check fa-2x"></i>
-              </div>
-              <div class="p-4 align-self-end">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
-                autem perspiciatis molestias, dolor aperiam beatae?
-              </div>
-            </div>
-          </div>
+            {% endif %}
         </div>
+        {% endfor %}
       </div>
-    </section>
+      <div class="col-lg-3 d-none d-lg-block">
+       Implement the search the filters after adding tag...
+      </div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Contact Us Section -->
-    <section
-      class="contact-section-header"
-      id="contact-area"
-    >
-      <div class="container text-center py-4">
-        <h3 class="display-3">Contact Me</h3>
-      </div>
-    </section>
-    <section class="contact-section">
-      <div class="container contact-content">
-        <div class="row">
-          <div class="col-lg-6 py-5 d-none d-lg-block">
-            <div class="container" id="contact-logo"></div>
-          </div>
-          <div class="col-lg-6 py-5 ">
-            <div class="card card-form w-100 m-auto bg-transparent">
-              <div class="card-body">
+  <!-- Pagination -->
+  <nav>
+    <ul class="pagination justify-content-center">
+      <li class="page-item {% if not posts.has_previous %} disabled {% endif %}"><a class="page-link" href="{% if posts.has_previous %}?page={{ posts.previous_page_number }}{% endif %}">Previous</a></li>
+      <li class="page-item active"><a class="page-link" href="#">{{ posts.number }}</a></li>
+      <li class="page-item {% if not posts.has_next %} disabled {% endif %}"><a class="page-link" href="{% if posts.has_next %}?page={{ posts.next_page_number }}{% endif %}">Next</a></li>
+    </ul>
+  </nav>
+
+  <!-- Footer Section -->
+  <section id="footer" class="pt-5 bg-my jumbotron jumbotron-fluid text-black">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <h3>The Prominent Dev</h5>
+            <div class="container">
+              <div class="d-flex">
+                <p>
+                  <i class="fa fa-map-marker-alt" aria-hidden="true"></i>
+                  Madan Mohan Malaviya University of Technology, India
+                </p>
+              </div>
+              <div class="d-flex">
+                <a class="footer-link" href="tel:+919170067689">
+                  <p>
+                    <i class="fa fa-phone-square" aria-hidden="true"></i> +91
+                    9170067689
+                  </p>
+                </a>
+              </div>
+              <div class="d-flex">
+                <a class="footer-link" href="mailto:malviyanshiv@gmail.com?Subject=Call from website">
+                  <p>
+                    <i class="fa fa-envelope-square" aria-hidden="true"></i>
+                    malviyanshiv@gmail.com
+                  </p>
+                </a>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-7 d-flex">
+          <div class="container d-flex">
+            <div class="row">
+              <div class="col-sm-12 d-flex justify-content-center">
                 <form action="">
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      name="name"
-                      id=""
-                      class="form-control"
-                      placeholder="Name"
-                    />
+                  <div class="form-inline">
+                    <input type="text" name="name" id="" class="form-control mr-1 mb-2" placeholder="Name">
+                    <input type="Email" name="email" id="" class="form-control mr-1 mb-2" placeholder="Email">
+                    <input type="submit" value="Subscribe" class="btn btn-secondary mb-2">
                   </div>
-                  <div class="form-group">
-                    <input
-                      type="email"
-                      name="name"
-                      id=""
-                      class="form-control"
-                      placeholder="Email"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <textarea
-                      rows="5"
-                      class="form-control"
-                      placeholder="Message"
-                    ></textarea>
-                  </div>
-                  <input
-                    type="submit"
-                    value="Submit"
-                    class="btn btn-secondary btn-block w-50 m-auto"
-                  />
                 </form>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer Section -->
-    <section id="footer" class="pt-5 py-2 bg-my text-white">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-5">
-              <h3>The Prominent Dev</h5>
-              <div class="container">
-                <div class="d-flex">
-                  <p>
-                    <i class="fa fa-map-marker-alt" aria-hidden="true"></i>
-                    Madan Mohan Malaviya University of Technology, India
-                  </p>
-                </div>
-                <div class="d-flex">
-                  <a href="tel:+919170067689">
-                    <p>
-                      <i class="fa fa-phone-square" aria-hidden="true"></i> +91
-                      9170067689
-                    </p>
-                  </a>
-                </div>
-                <div class="d-flex">
-                  <a href="mailto:malviyanshiv@gmail.com?Subject=Call from website">
-                    <p>
-                      <i class="fa fa-envelope-square" aria-hidden="true"></i>
-                      malviyanshiv@gmail.com
-                    </p>
-                  </a>
-                </div>
-              </div>
-          </div>
-          <div class="col-md-7 d-flex">
-            <div class="container d-flex">
-              <div class="row">
-                <div class="col-sm-12 d-flex justify-content-center">
-                  <form action="">
-                    <div class="form-inline">
-                      <input type="text" name="name" id="" class="form-control mr-1 mb-2" placeholder="Name">
-                      <input type="Email" name="email" id="" class="form-control mr-1 mb-2" placeholder="Email">
-                      <input type="submit" value="Subscribe" class="btn btn-secondary mb-2">
-                    </div>
-                  </form>
-                </div>
-                <div class="col-sm-12 text-center mt-3">
-                  <i class="fab fa-facebook-square fa-2x"></i>
-                  <i class="fab fa-github-square fa-2x"></i>
-                  <i class="fab fa-linkedin fa-2x"></i>
-                </div>
+              <div class="col-sm-12 text-center mt-3">
+                <i class="fab fa-facebook-square fa-2x"></i>
+                <i class="fab fa-github-square fa-2x"></i>
+                <i class="fab fa-linkedin fa-2x"></i>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <p class="d-block text-center">
-        Copyright &copy; <span id="year"></span>
-      </p>
-    </section>
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.js"
-      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      $("#year").text(new Date().getFullYear());
-      $("body").scrollspy({ target: "#main-nav", offset: 50 });
-
-      $("#main-nav a").on("click", function(e) {
-        if (this.hash !== "") {
-          e.preventDefault();
-          $("html, body").animate(
-            {
-              scrollTop: $(this.hash).offset().top - 45
-            },
-            900,
-          );
+    </div>
+    <p class="d-block text-center">
+      Copyright &copy; <span id="year"></span>
+    </p>
+  </section>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"></script>
+<script>
+  $("#year").text(new Date().getFullYear());
+  $(".footer-section a").on("click", function (e) {
+    if (this.hash !== "") {
+      e.preventDefault();
+      const a = this.hash;
+      $("html, body").animate(
+        {
+          scrollTop: $(a).offset().top
+        },
+        900,
+        function () {
+          window.location.hash = a;
         }
-      });
-    </script>
-  </body>
+      );
+    }
+  });
+</script>
+
 </html>

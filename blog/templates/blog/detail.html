@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,119 +11,130 @@
         crossorigin="anonymous" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>{{ post.title|truncatewords:5 }}</title>
 </head>
-
-<body>
-    <!-- Navigation Area -->
-    <nav class="navbar navbar-expand-sm py-2 navbar-dark bg-dark fixed-top" id="main-nav">
-        <div class="container">
-            <a href="#" class="navbar-brand"><img src="img/blog_icon1.png" height="50" width="50"> <span class="">log</span></a>
-            <button class="navbar-toggler" data-toggle="collapse" data-target="#navcollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navcollapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="#main-area" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#explore-area" class="nav-link">Explore</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#author-area" class="nav-link">About Author</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#contact-area" class="nav-link">Contact Me</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
 <body>
 
     <!-- Main content Section -->
     <section id="main-area" class="pt-5 py-2">
-        <div class="container pt-5">
+        <div class="container">
             <div class="row pt-5">
-                <h1 class="responsive-header-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, perspiciatis?</h1>
-                <small class="text-muted h6"><i>last updated 10-05-2019</i></small>
-                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda incidunt repellat sapiente voluptates
+                <h1 class="responsive-header-text">{{ post.title }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, perspiciatis?</h1>
+                <small class="text-muted h6"><i>last updated {{ post.updated }}</i></small>
+                <p class="lead">{{ post.body }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda incidunt repellat sapiente voluptates
                      earum error in a expedita recusandae eveniet consequatur obcaecati
                      porro iste, explicabo culpa, quisquam architecto totam eius! Quas accusamus recusandae vero, nostrum 
                      quisquam, magnam iusto id, culpa minima dolorum nisi neque quis doloribus asperiores esse quidem error.</p>
             </div>
             <div class="row d-flex">
-                <a class="mr-4"><i class="fas fa-thumbs-up fa-2x"></i></a>
-                <a><i class="fas fa-comments fa-2x"></i></a>
+                <a class="mr-4" href="#"><i class="fas fa-thumbs-up fa-2x"></i></a>
+                <a href="{{ post.get_absolute_url }}/share" target="_blank" class="mr-4"><i class="fas fa-share-alt fa-2x"></i></a>
+                <a href="{{ post.get_absolute_url }}/download" target="_blank"><i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
             </div>
-            <div class="row border-bottom border-secondary">
-                content for suggestion
-            </div>
-            <div class="row">
-                <ul class="list-unstyled mt-3">
-                    <li class="media mt-1">
-                        <div class="media-body">
-                            <h6><b>malviyanshiv</b></h6>
-                            <p><small><i class="text-muted">10-05-2019</i></small><br>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-                                odio, vestibulum in
-                                vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                                congue felis in faucibus.
+            <div class="row border-bottom border-secondary mt-3">
+                {% for post in posts %}
+                <div class="col-md-6">
+                    <div class="card mb-5">
+                        <!-- <img src="{% static 'img/card-top-1.jpg' %} " alt="Card Image" class="card-img-top" /> -->
+                        <div class="card-body text-dark">
+                            <h5 class="card-title">
+                                {{ post.title }}
+                            </h5>
+                            <p class="card-text">
+                                {{ post.body | truncatewords:15 }}
                             </p>
+                            <p class="card-text">
+                                <small class="text-muted">Last updated {{ post.updated }}</small>
+                            </p>
+                            <div class="card-footer text-secondary d-flex justify-content-between">
+                                <a><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">{{ post.like_count }}</span></a>
+                                <a><i class="fas fa-comments fa-2x"></i><span class="badge">{{ post.comment_count }}</span></a>
+                                <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">Read More</a>
+                            </div>
                         </div>
-                    </li>
-                <li class="media mt-1">
-                    <div class="media-body">
-                        <h6><b>malviyanshiv</b></h6>
-                        <p><small><i class="text-muted">10-05-2019</i></small><br>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-                            odio, vestibulum in
-                            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                            congue felis in faucibus.
-                        </p>
                     </div>
-                </li>
-                <li class="media mt-1">
-                    <div class="media-body">
-                        <h6><b>malviyanshiv</b></h6>
-                        <p><small><i class="text-muted">10-05-2019</i></small><br>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-                            odio, vestibulum in
-                            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-                            congue felis in faucibus.
-                        </p>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- comment section -->
+            <div class="mt-2">
+                <div class="row">
+                    <div class="comments col-md-9" id="comments">
+                        <h3 class="mb-2">Comments</h3>
+                        <!-- comment -->
+                        {% for comment in comments %}
+                        <div class="comment mb-2 row">
+                            <div class="comment-content col-md-11 col-sm-10">
+                                <h6 class="small comment-meta"><a href="#">{{ comment.name }}</a> {{ comment.created }}</h6>
+                                <div class="comment-body">
+                                    <p>
+                                       {{ comment.body }}
+                                        <br>
+                                        <!-- <a href="" class="text-right small"><i class="fas fa-reply"></i> Reply</a> -->
+                                    </p>
+                                </div>
+                            </div>
+            
+                            <!-- reply is indented 
+                            <div class="comment-reply col-md-11 offset-md-1 col-sm-10 offset-sm-2">
+                                <div class="row">
+                                    <div class="comment-avatar col-md-1 col-sm-2 text-center pr-1">
+                                        <a href=""><img class="mx-auto rounded-circle img-fluid" src="{% static 'img/avatar.jpg' %}"
+                                                alt="avatar"></a>
+                                    </div>
+                                    <div class="comment-content col-md-11 col-sm-10 col-12">
+                                        <h6 class="small comment-meta"><a href="#">phildownney</a> Today, 12:31</h6>
+                                        <div class="comment-body">
+                                            <p>Really?? Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+                                                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitat.
+                                                <br>
+                                                <a href="" class="text-right small"><i class="fas fa-reply"></i> Reply</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             /reply is indented -->
+                        </div>
+                        {% endfor %}
+                        <!-- /comment -->
                     </div>
-                </li>
-                </ul>
+                </div>
             </div>
             <div class="row">
-                <div class="col-lg-6 py-5">
-                    <div class="card card-form w-100 bg-transparent">
-                        <div class="card-body">
-                            <form action="">
-                                <div class="form-group">
-                                    <input type="text" name="name" id="" class="form-control" placeholder="Name" />
+                <div class="card card-form w-100 bg-transparent">
+                    <div class="card-body">
+                        <form action="{{ post.get_absolute_url }}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <textarea rows="5" class="form-control" placeholder="Message" required name="body"></textarea>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="email" name="name" id="" class="form-control" placeholder="Email" />
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" name="name" id="" class="form-control" placeholder="Name" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="email" id="" class="form-control" placeholder="Email" />
+                                    </div>
+                                    <input type="hidden" name="post" value=" {{ post.id }}">
+                                    <input type="submit" value="Comment" class="btn btn-secondary btn-block w-50 m-auto" />
                                 </div>
-                                <div class="form-group">
-                                    <textarea rows="5" class="form-control" placeholder="Message"></textarea>
-                                </div>
-                                <input type="submit" value="Submit" class="btn btn-secondary btn-block w-50 m-auto" />
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    
+    
     <!-- Footer Section -->
-    <section id="footer" class="pt-5 py-2 bg-my text-white">
+    <section id="footer" class="pt-5 bg-my jumbotron jumbotron-fluid text-black">
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
@@ -199,6 +211,8 @@
                 );
             }
         });
+
+
     </script>
     </body>
     

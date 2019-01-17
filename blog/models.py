@@ -1,6 +1,12 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
+
+#Published Post Manager for Post model
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super(PublishedManager, self).get_queryset().filter(status='published')
 
 #Post model
 class Post(models.Model):
@@ -18,6 +24,8 @@ class Post(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
     like_count = models.IntegerField(default=0)
     comment_count = models.IntegerField(default=0)
+    objects = models.Manager() # the default manager
+    published = PublishedManager() # our custom manager
 
     class Meta:
         ordering = ('-publish',)
@@ -25,16 +33,16 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-#Published Post Manager for Post model
-class PublishedManager(models.Manager):
-    def get_queryset(self):
-        return super(PublishedManager, self).get_queryset().filter(status='published')
+    def get_absolute_url(self):
+        return reverse('blog:post_detail',
+                        args=[ self.publish.day, self.publish.month, self.publish.year, self.slug])
+
 
 #Comment Model
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
-    name = models.CharField(max_length=80)
-    email = models.EmailField()
+    name = models.CharField( max_length=80, blank=True, default="Anonymous")
+    email = models.EmailField(blank=True, default="user@email.com")
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
