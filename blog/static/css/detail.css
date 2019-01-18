@@ -1,10 +1,23 @@
-body {
-    background: #e9ecef;
-}
-
 #footer a {
     text-decoration: none;
-    color: black;
+    color: black !important;
+}
+
+#footer {
+    margin-bottom: 0px;
+}
+
+body a {
+    text-decoration: none;
+    color: #6c757d;
+}
+
+.lead {
+    text-align: justify;
+}
+
+a.post-like {
+    cursor: pointer;
 }
 
 @media( max-width:768px) {
@@ -27,5 +40,11 @@ body {
 @media( max-width: 579px) {
     body {
         padding: 0px 10px;
+    }
+    .responsive-header-text {
+        font-size: 27px;
+    }
+    .lead{
+        font-size: 1rem;
     }
 }

@@ -5,7 +5,7 @@ from django.urls import reverse
 from blog.models import Post, Comment
 from django.shortcuts import get_object_or_404
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
-from blog.form import CommentForm
+from blog.form import CommentForm, EmailPostForm
 from taggit.models import Tag
 
 # Create your views here.
@@ -45,12 +45,13 @@ def post_detail(requests, day, month, year, slug):
     return render(requests, "blog/detail.html", {"post": post, "comments": comments, "posts":posts})
 
 def post_share(requests, day, month, year, slug):
-    #code to share send the post via email
+    print("Received a share post request")
     
     return HttpResponseRedirect(reverse('blog:post_detail', args=[day, month, year, slug]))
 
 def post_download(requests, day, month, year, slug):
     #code to convert the file to pdf to download
+    print("Received a download post request")
     return HttpResponseRedirect(reverse('blog:post_detail', args=[day, month, year, slug]))
 
 def post_like(requests, day, month, year, slug):
@@ -59,8 +60,8 @@ def post_like(requests, day, month, year, slug):
         post = get_object_or_404(Post, slug=slug, status='published',publish__year=year, publish__month=month, publish__day=day)
     except:
         return JsonResponse(data)
-    if requests.method == 'POST' or requests.is_ajax():
+    if requests.is_ajax():
         post.like_count += 1
         post.save()
-        data['is_done'] = 1
+        data['is_done'] = post.like_count
         return JsonResponse(data)

@@ -86,13 +86,28 @@
       </div>
       <div class="col-lg-3 d-none d-lg-block">
        <div class="container">
-         <h4>Tags :</h4>
+         <div class="row mb-5">
+          <form action="">
+           <div class="input-group">
+             <div class="input-group-text">
+              <input type="text" name="search" id="search" class="form-control" placeholder="Search">
+              <div class="input-group-append">
+                <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+              </div>
+            </div>
+           </div>
+          </form>
+         </div>
+         <form action="">
+         <h4>Popular Tags :</h4>
          {% for tag in tags %}
-          <div class="custom-control custom-checkbox">
+          <div class="custom-control custom-checkbox mb-2">
             <input type="checkbox" class="custom-control-input" id="{{ tag.name }}">
             <label class="custom-control-label" for="{{ tag.name }}">{{ tag.name }}</label>
           </div>
           {% endfor %}
+          <input type="submit" value="Filter" class="btn mt-2">
+          </form>
        </div>
       </div>
       </div>
