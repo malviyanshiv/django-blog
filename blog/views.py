@@ -1,14 +1,18 @@
 from django.shortcuts import render
-from django.shortcuts import HttpResponseRedirect, redirect
+from django.shortcuts import HttpResponseRedirect, redirect, HttpResponse
 from django.http import JsonResponse
 from django.urls import reverse
-from django.template.loader import render_to_string
+from django.template.loader import render_to_string, get_template
+from django.template import Context
 from blog.models import Post, Comment
 from django.shortcuts import get_object_or_404
 from django.core.paginator import PageNotAnInteger, Paginator, EmptyPage
 from blog.form import CommentForm, EmailPostForm, SubscribForm
 from taggit.models import Tag
 from django.core.mail import send_mail
+from xhtml2pdf import pisa
+from io import BytesIO
+from cgi import escape
 
 # Create your views here.
 
@@ -70,7 +74,14 @@ def post_share(requests, day, month, year, slug):
 
 def post_download(requests, day, month, year, slug):
     #code to convert the file to pdf to download
-    print("Received a download post request")
+    post = get_object_or_404(Post, slug=slug, status='published', publish__year=year, publish__month=month,publish__day=day)
+    template = get_template('blog/pdf_temp.html')
+    context = {'post':post}
+    html = template.render(context)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type="application/pdf")
     return HttpResponseRedirect(reverse('blog:post_detail', args=[day, month, year, slug]))
 
 def post_like(requests, day, month, year, slug):

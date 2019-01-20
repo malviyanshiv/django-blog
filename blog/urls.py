@@ -9,6 +9,6 @@ urlpatterns = [
     path("subscribe", views.blog_subscribe, name="blog_subscribe"),
     path("post/<int:day>/<int:month>/<int:year>/<slug:slug>", views.post_detail, name="post_detail"),
     path("post/<int:day>/<int:month>/<int:year>/<slug:slug>/share", views.post_share, name="post_share"),
-    path("post/<int:day>/<int:month>/<int:year>/<slug:slug>/download",views.post_share, name="post_download"),
+    path("post/<int:day>/<int:month>/<int:year>/<slug:slug>/download",views.post_download, name="post_download"),
     path("post/<int:day>/<int:month>/<int:year>/<slug:slug>/like", views.post_like, name="post_like"),
 ]
