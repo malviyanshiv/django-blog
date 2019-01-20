@@ -55,3 +55,15 @@ class Comment(models.Model):
 
     def __str__(self):
         return "Comment by {} on {}".format(self.name, self.post)
+
+#Subscribe model
+class Subscribe(models.Model):
+    name = models.CharField(max_length=80)
+    email = models.EmailField(unique=True)
+    request_on = models.DateTimeField(auto_now_add=True)
+    subscribed_on = models.DateTimeField(auto_now=True)
+    confirm_token = models.CharField(max_length=100)
+    confirmed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return "{} subscribed on {}".format(self.name, self.subscribed_on)

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from blog.models import Post, Comment
+from blog.models import Post, Comment, Subscribe
 
 # Register your models here.
 @admin.register(Post)
@@ -17,3 +17,5 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ('post', 'active', 'email')
     odering = ('active', 'created')
     search_fields = ('email', 'name', 'body')
+
+admin.site.register(Subscribe)

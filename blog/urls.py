@@ -6,6 +6,7 @@ app_name = 'blog'
 
 urlpatterns = [
     path("", views.blog_home, name="blog_home"),
+    path("subscribe", views.blog_subscribe, name="blog_subscribe"),
     path("post/<int:day>/<int:month>/<int:year>/<slug:slug>", views.post_detail, name="post_detail"),
     path("post/<int:day>/<int:month>/<int:year>/<slug:slug>/share", views.post_share, name="post_share"),
     path("post/<int:day>/<int:month>/<int:year>/<slug:slug>/download",views.post_share, name="post_download"),

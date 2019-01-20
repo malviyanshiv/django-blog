@@ -47,8 +47,8 @@
                     <small class="text-muted">Last updated {{ post.updated }}</small>
                   </p>
                   <div class="card-footer text-secondary d-flex justify-content-between">
-                    <a><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">{{ post.like_count }}</span></a>
-                    <a><i class="fas fa-comments fa-2x"></i><span class="badge">{{ post.comment_count }}</span></a>
+                    <a class="post-like mr-4" data-value="{{post.get_absolute_url}}/like" href="#"><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">{{ post.like_count }}</span></a>
+                    <a href="{{ post.get_absolute_url }}"><i class="fas fa-comments fa-2x"></i><span class="badge">{{ post.comment_count }}</span></a>
                     <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">Read More</a>
                   </div>
                 </div>
@@ -70,8 +70,8 @@
                       <small class="text-muted">Last updated {{ post.updated }}</small>
                     </p>
                     <div class="card-footer text-secondary d-flex justify-content-between">
-                      <a><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">{{ post.like_count }}</span></a>
-                      <a><i class="fas fa-comments fa-2x"></i><span class="badge">{{ post.comment_count }}</span></a>
+                      <a class="post-like mr-4" data-value="{{post.get_absolute_url}}/like" href="#"><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">{{ post.like_count }}</span></a>
+                      <a href="{{ post.get_absolute_url }}"><i class="fas fa-comments fa-2x"></i><span class="badge">{{post.comment_count }}</span></a>
                       <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">Read More</a>
                     </div>
                   </div>
@@ -98,11 +98,11 @@
            </div>
           </form>
          </div>
-         <form action="">
+         <form action="" method="GET">
          <h4>Popular Tags :</h4>
          {% for tag in tags %}
           <div class="custom-control custom-checkbox mb-2">
-            <input type="checkbox" class="custom-control-input" id="{{ tag.name }}">
+            <input type="checkbox" class="custom-control-input tag-check" name="tags[]" id="{{ tag.name }}" value="{{ tag.name }}">
             <label class="custom-control-label" for="{{ tag.name }}">{{ tag.name }}</label>
           </div>
           {% endfor %}
@@ -158,13 +158,12 @@
           <div class="container d-flex">
             <div class="row">
               <div class="col-sm-12 d-flex justify-content-center">
-                <form action="">
                   <div class="form-inline">
-                    <input type="text" name="name" id="" class="form-control mr-1 mb-2" placeholder="Name">
-                    <input type="Email" name="email" id="" class="form-control mr-1 mb-2" placeholder="Email">
-                    <input type="submit" value="Subscribe" class="btn btn-secondary mb-2">
+                    {% csrf_token %}
+                    <input type="text" name="name" id="subscriber-name" class="form-control mr-1 mb-2" placeholder="Name">
+                    <input type="Email" name="email" id="subscriber-email" class="form-control mr-1 mb-2" placeholder="Email">
+                    <button class="btn btn-secondary" id="subscribe-submit">Subscribe</button>
                   </div>
-                </form>
               </div>
               <div class="col-sm-12 text-center mt-3">
                 <i class="fab fa-facebook-square fa-2x"></i>
@@ -180,6 +179,14 @@
       Copyright &copy; <span id="year"></span>
     </p>
   </section>
+
+  <!-- Subscription alert -->
+  <!-- <div class="alert alert-info alert-dismissible fade show" role="alert" id="subscription-alert">
+    <strong>Subscription Successful! <br></strong> An confirmation has been sent to your specified email. Please confirm your email to get updated with the latest release.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> -->
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
@@ -203,6 +210,35 @@
         }
       );
     }
+  });
+
+  $(".post-like").click(function (e) {
+      $.get($(e.target).parent().attr("data-value"), function (data) {
+        console.log(data);
+        $(e.target).parent().children()[1].innerHTML = data['is_done'];
+        $(e.target).parent().off('click');
+        $(e.target).parent().css("cursor", "default");
+      })
+    });
+
+    
+  $("#subscribe-submit").click(function(e){
+    $.ajax({
+      type: 'POST',
+      url: './subscribe',
+      data: {
+        'name': $("#subscriber-name").val(),
+        'email': $("#subscriber-email").val(),
+        'csrfmiddlewaretoken': $('input[type=hidden]').val()
+      },
+      success: function(data){
+        if( data['status'] == 1 ){
+          alert("An confirmation mail has been successfully sent.");
+        }else{
+          alert("Some unexpected error occurred. Make sure you specify the correct detail and Please try again later...");
+        }
+      }
+    });
   });
 </script>
 

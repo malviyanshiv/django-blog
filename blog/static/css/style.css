@@ -1,13 +1,24 @@
+body a {
+    text-decoration: none;
+    color: #6c757d;
+}
 
+body a:hover {
+    color: #5a6268;
+}
 
-#footer a{
+#footer a {
     text-decoration: none;
     color: black !important;
 }
 
-#footer{
+#footer {
     margin-bottom: 0px;
-} 
+}
+
+a.post-like {
+    cursor: pointer;
+}
 
 @media( max-width:768px) {
     #forktag {

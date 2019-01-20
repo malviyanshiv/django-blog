@@ -32,8 +32,8 @@
                 <p class="lead"><i><b>Tags:</b> {{ post.tags.all|join:", " }} </i></p>
             </div>
             <div class="row d-flex text-black-50">
-                <a class="post-like mr-4" data-value="{{post.get_absolute_url}}/like"><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">{{ post.like_count }}</span></a>
-                <a href="{{ post.get_absolute_url }}/share" data-toggle="modal" data-target="#modalContactForm" target="_blank" class="mr-4"><i class="fas fa-share-alt fa-2x"></i></a>
+                <a class="post-like mr-4" data-value="{{post.get_absolute_url}}/like" href="#"><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">{{ post.like_count }}</span></a>
+                <a href="{{ post.get_absolute_url }}/share" data-toggle="modal" data-target="#modalshareform" target="_blank" class="mr-4"><i class="fas fa-share-alt fa-2x"></i></a>
                 <a href="{{ post.get_absolute_url }}/download" target="_blank"><i class="fa fa-download fa-2x" aria-hidden="true"></i></a>
             </div>
             <div class="row mt-3 pt-3">
@@ -57,8 +57,8 @@
                                 <small class="text-muted">Last updated {{ post.updated }}</small>
                             </p>
                             <div class="card-footer text-secondary d-flex justify-content-between">
-                                <a class="post-like" data-value="{{post.get_absolute_url}}/like"><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">{{ post.like_count }}</span></a>
-                                <a><i class="fas fa-comments fa-2x"></i><span class="badge">{{ post.comment_count }}</span></a>
+                                <a class="post-like" data-value="{{post.get_absolute_url}}/like" href="#"><i class="fas fa-thumbs-up fa-2x"></i><span class="badge">{{ post.like_count }}</span></a>
+                                <a href="{{ post.get_absolute_url }}"><i class="fas fa-comments fa-2x"></i><span class="badge">{{ post.comment_count }}</span></a>
                                 <a href="{{ post.get_absolute_url }}" class="btn btn-secondary">Read More</a>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                 {% endfor %}
             </div>
             <!-- comment section -->
-            <div class="mt-2">
+            <div class="mt-2" id="comment-section">
                 <div class="row">
                     <div class="comments col-md-9" id="comments">
                         <h3 class="mb-2">Comments</h3>
@@ -75,7 +75,7 @@
                         {% for comment in comments %}
                         <div class="comment mb-2 row">
                             <div class="comment-content col-md-11 col-sm-10">
-                                <h6 class="small comment-meta"><a href="#">{{ comment.name }}</a> {{ comment.created }}</h6>
+                                <h6 class="small comment-meta"><span class="text-primary">{{ comment.name }}</span> {{ comment.created }}</h6>
                                 <div class="comment-body">
                                     <p>
                                        {{ comment.body }}
@@ -200,7 +200,7 @@
     </section>
 
     <!-- Modal for sharing the post -->
-    <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalshareform" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
@@ -213,32 +213,32 @@
                     <div class="md-form mb-3 input-group">
                         <div class="input-group-text w-100">
                             <i class="fas fa-user prefix grey-text input-group-prepend mr-4"></i>
-                            <input type="text" id="form34" class="form-control w-100 validate" placeholder="Your Name">
+                            <input type="text" id="sender-name" class="form-control w-100 validate" placeholder="Your Name">
                         </div>
                     </div>
     
                     <div class="md-form mb-3 input-group">
                         <div class="input-group-text w-100">
                             <i class="fas fa-envelope prefix grey-text input-group-prepend mr-4"></i>
-                            <input type="email" id="form29" class="form-control w-100 validate" placeholder="Your Email">
+                            <input type="email" id="sender-email" class="form-control w-100 validate" placeholder="Your Email">
                         </div>
                     </div>
     
                     <div class="md-form mb-3 input-group">
                         <div class="input-group-text w-100">
                             <i class="fas fa-envelope prefix grey-text input-group-prepend mr-4"></i>
-                            <input type="email" id="form32" class="form-control w-100 validate" placeholder="Receiver Email">
+                            <input type="email" id="receiver-email" class="form-control w-100 validate" placeholder="Receiver Email">
                         </div>
                     </div>
     
                     <div class="md-form">
                         <i class="fas fa-pencil prefix grey-text"></i>
-                        <textarea type="text" id="form8" class="md-textarea form-control" rows="4" placeholder="Your Message"></textarea>
+                        <textarea type="text" id="message" class="md-textarea form-control" rows="4" placeholder="Your Message"></textarea>
                     </div>
     
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <button class="btn btn-unique">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
+                    <button class="btn btn-unique" id="share-btn">Send <i class="fas fa-paper-plane-o ml-1"></i></button>
                 </div>
             </div>
         </div>
@@ -273,6 +273,31 @@
                 $(e.target).parent().off('click');
                 $(e.target).parent().css("cursor", "default");
             })
+        });
+
+        $('#share-btn').on('click', function(e){
+            $('#share-btn').text("Sending...")
+            $.ajax({
+                type: 'POST',
+                url: window.location.href + '/share',
+                data: {
+                    'name': $("#sender-name").val(),
+                    'email': $("#sender-email").val(),
+                    'to': $("#receiver-email").val(),
+                    'comment':$("#message").val(),
+                    'csrfmiddlewaretoken': $('input[type=hidden]').val()
+                },
+                success: function (data) {
+                    if (data['status'] == 1) {
+                        $('#modalshareform').modal('toggle');
+                        alert("Mail was successfully sent to " + $("#receiver-email").val());
+                        $('#share-btn').text("Send")
+                    } else {
+                        alert("Some unexpected error occurred");
+                        $('#share-btn').text("Send")
+                    }
+                }
+            });
         });
 
     </script>
